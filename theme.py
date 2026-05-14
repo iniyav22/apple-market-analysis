@@ -5,15 +5,17 @@ def apply_theme():
     st.markdown(
         """
         <style>
+        /* ── Apple Design System ─────────────────────────────────── */
         :root {
-            --science-blue: #0A84FF;
-            --science-blue-soft: rgba(10, 132, 255, 0.10);
-            --shark: #1D1D1F;
-            --shark-2: #23252A;
-            --athens-gray: #F5F7FA;
-            --white: #FFFFFF;
-            --muted: #C7CDD6;
-            --border: rgba(255,255,255,0.08);
+            --apple-bg:        #f5f5f7;
+            --apple-surface:   #ffffff;
+            --apple-blue:      #0071e3;
+            --apple-blue-hover:#0077ed;
+            --apple-text:      #1d1d1f;
+            --apple-secondary: #6e6e73;
+            --apple-border:    #d2d2d7;
+            --apple-shadow:    0 2px 12px rgba(0,0,0,0.08);
+            --apple-shadow-md: 0 4px 24px rgba(0,0,0,0.10);
         }
 
         html, body, [class*="css"] {
@@ -21,139 +23,239 @@ def apply_theme():
                          "SF Pro Text", "Segoe UI", sans-serif;
         }
 
+        /* ── 전체 배경 ─────────────────────────────────────────────── */
         .stApp {
-            background:
-                radial-gradient(circle at top right, rgba(10,132,255,0.08), transparent 24%),
-                linear-gradient(180deg, #17181B 0%, #1D1D1F 100%);
-            color: var(--white);
+            background: var(--apple-bg);
+            color: var(--apple-text);
         }
 
         .block-container {
-            max-width: 1220px;
-            padding-top: 1rem;
-            padding-bottom: 2rem;
+            max-width: 1200px;
+            padding-top: 1.5rem;
+            padding-bottom: 3rem;
         }
 
+        /* ── 헤더 / 탑 네비게이션 ──────────────────────────────────── */
         header[data-testid="stHeader"] {
-            background: rgba(29, 29, 31, 0.92);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--apple-border);
         }
 
-        nav[aria-label="Page navigation"] {
-            border-bottom: 1px solid var(--border);
+        /* 네비게이션 바 전체 흰색 */
+        div[data-testid="stHeader"],
+        nav[data-testid="stNavigation"],
+        div[data-testid="stNavigation"] {
+            background: rgba(255, 255, 255, 0.92) !important;
         }
 
-        h1, h2, h3 {
-            color: var(--white);
+        /* 로고 이미지 크기 조정 */
+        div[data-testid="stLogo"] img {
+            height: 22px !important;
+            width: auto !important;
+        }
+
+        /* ── 사이드바 ──────────────────────────────────────────────── */
+        section[data-testid="stSidebar"] {
+            background: var(--apple-surface);
+            border-right: 1px solid var(--apple-border);
+        }
+
+        section[data-testid="stSidebar"] * {
+            color: var(--apple-text) !important;
+        }
+
+        /* ── 타이포그래피 ───────────────────────────────────────────── */
+        h1 {
+            color: var(--apple-text);
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        h2, h3 {
+            color: var(--apple-text);
             letter-spacing: -0.03em;
         }
 
+        p, span, label, li {
+            color: var(--apple-text);
+        }
+
+        /* ── 차트 컨테이너 ─────────────────────────────────────────── */
         div[data-testid="stVegaLiteChart"] {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: var(--apple-surface);
+            border: 1px solid var(--apple-border);
             border-radius: 18px;
-            padding: 0.35rem;
+            padding: 0.5rem;
+            box-shadow: var(--apple-shadow);
         }
 
         div[data-testid="stDataFrame"] {
-            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--apple-surface);
+            border: 1px solid var(--apple-border);
             border-radius: 16px;
             overflow: hidden;
+            box-shadow: var(--apple-shadow);
         }
 
+        /* ── Hero 카드 ─────────────────────────────────────────────── */
         .hero-card {
-            background: linear-gradient(135deg, rgba(10,132,255,0.10), rgba(255,255,255,0.02));
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 24px;
-            padding: 1.2rem 1.3rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+            background: var(--apple-surface);
+            border: 1px solid var(--apple-border);
+            border-radius: 20px;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--apple-shadow-md);
         }
 
         .hero-title {
-            font-size: 1.65rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            line-height: 1.15;
-            color: var(--white);
+            line-height: 1.2;
+            color: var(--apple-text);
             margin-bottom: 0.4rem;
             letter-spacing: -0.03em;
         }
 
         .hero-subtext {
-            font-size: 0.98rem;
-            color: var(--muted);
+            font-size: 0.95rem;
+            color: var(--apple-secondary);
             line-height: 1.6;
             max-width: 860px;
         }
 
+        /* ── Pill 태그 ─────────────────────────────────────────────── */
         .pill {
             display: inline-block;
-            padding: 0.34rem 0.72rem;
-            margin-right: 0.45rem;
-            margin-top: 0.65rem;
+            padding: 0.3rem 0.75rem;
+            margin-right: 0.4rem;
+            margin-top: 0.6rem;
             border-radius: 999px;
-            background: rgba(10,132,255,0.10);
-            border: 1px solid rgba(10,132,255,0.20);
-            color: #D9ECFF;
-            font-size: 0.82rem;
+            background: #e8f0fe;
+            border: 1px solid #c6d8fa;
+            color: var(--apple-blue);
+            font-size: 0.80rem;
             font-weight: 600;
         }
 
+        /* ── Mini 카드 (FOCUS / DATA SCOPE / USE CASE) ─────────────── */
         .mini-card {
-            background: #F5F7FA;
-            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--apple-surface);
+            border: 1px solid var(--apple-border);
             border-radius: 18px;
-            padding: 1rem;
+            padding: 1.1rem 1.2rem;
             min-height: 110px;
+            box-shadow: var(--apple-shadow);
         }
 
         .mini-label {
-            font-size: 0.84rem;
-            color: #5B6573;
-            margin-bottom: 0.35rem;
+            font-size: 0.78rem;
+            color: var(--apple-secondary);
+            margin-bottom: 0.4rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.06em;
         }
 
         .mini-value {
-            font-size: 1.35rem;
-            line-height: 1.25;
+            font-size: 1.25rem;
+            line-height: 1.3;
             font-weight: 700;
-            color: #1D1D1F;
+            color: var(--apple-text);
         }
 
+        /* ── st.metric() ───────────────────────────────────────────── */
+        div[data-testid="stMetricValue"] {
+            color: var(--apple-text) !important;
+            font-weight: 700;
+        }
+
+        div[data-testid="stMetricLabel"] {
+            color: var(--apple-secondary) !important;
+        }
+
+        /* ── Section 카드 ──────────────────────────────────────────── */
         .section-card {
-            background: rgba(255,255,255,0.035);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 1rem 1.1rem;
+            background: var(--apple-surface);
+            border: 1px solid var(--apple-border);
+            border-radius: 18px;
+            padding: 1.1rem 1.3rem;
             margin-bottom: 1rem;
+            box-shadow: var(--apple-shadow);
         }
 
         .section-title {
             font-size: 1.05rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
-            color: var(--white);
+            margin-bottom: 0.3rem;
+            color: var(--apple-text);
         }
 
         .section-text {
-            color: var(--muted);
-            line-height: 1.6;
-            font-size: 0.96rem;
+            color: var(--apple-secondary);
+            line-height: 1.65;
+            font-size: 0.94rem;
         }
 
+        /* ── 탭 ────────────────────────────────────────────────────── */
         .stTabs [data-baseweb="tab"] {
             border-radius: 999px;
-            padding: 0.35rem 0.9rem;
-            background: rgba(255,255,255,0.03);
+            padding: 0.35rem 1rem;
+            background: transparent;
+            color: var(--apple-secondary);
+            font-weight: 700;
         }
 
         .stTabs [aria-selected="true"] {
-            background: rgba(10,132,255,0.12) !important;
-            border: 1px solid rgba(10,132,255,0.24) !important;
+            background: var(--apple-blue) !important;
+            color: #ffffff !important;
+            border: none !important;
+            font-weight: 700 !important;
+        }
+
+        .stTabs [aria-selected="true"] p,
+        .stTabs [aria-selected="true"] span {
+            color: #ffffff !important;
+        }
+
+        /* ── 입력창 ────────────────────────────────────────────────── */
+        div[data-testid="stTextInput"] input,
+        div[data-baseweb="input"] input {
+            background: var(--apple-surface) !important;
+            color: var(--apple-text) !important;
+            border: 1px solid var(--apple-border) !important;
+            border-radius: 10px !important;
+        }
+
+        /* ── 버튼 ──────────────────────────────────────────────────── */
+        div[data-testid="stForm"] button {
+            background: var(--apple-blue) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 980px !important;
+            font-weight: 600 !important;
+            padding: 0.5rem 1.4rem !important;
+        }
+
+        div[data-testid="stForm"] button:hover {
+            background: var(--apple-blue-hover) !important;
+            color: #ffffff !important;
+        }
+
+        div[data-testid="stForm"] button p,
+        div[data-testid="stForm"] button span {
+            color: #ffffff !important;
+        }
+
+        /* ── Chat 메시지 ────────────────────────────────────────────── */
+        div[data-testid="stChatMessage"] {
+            background: var(--apple-surface) !important;
+            border: 1px solid var(--apple-border) !important;
+            border-radius: 14px !important;
+            box-shadow: var(--apple-shadow) !important;
         }
         </style>
         """,
