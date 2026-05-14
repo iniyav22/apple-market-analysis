@@ -3,26 +3,35 @@ from theme import apply_theme
 
 st.set_page_config(
     page_title="Apple Quarterly Analysis Dashboard",
-    page_icon="🍎",
+    page_icon="apple-cn_icon.JPG",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
 apply_theme()
 
-home = st.Page(
-    "pages/home.py",
-    title="Home",
-    icon="🍎",
-    default=True,
+st.logo("apple-cn_icon.JPG", size="medium")
+
+st.markdown(
+    """
+    <style>
+    [data-testid="stLogo"] {
+        transform: scale(1.3);
+        transform-origin: left center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
 
+home = st.Page("pages/home.py", title="Home", default=True)
 q1 = st.Page("pages/q1.py", title="Q1", icon="📈")
 q2 = st.Page("pages/q2.py", title="Q2", icon="📊")
 q3 = st.Page("pages/q3.py", title="Q3", icon="⚡")
 q4 = st.Page("pages/q4.py", title="Q4", icon="📉")
 q5 = st.Page("pages/q5.py", title="Q5", icon="📰")
 q6 = st.Page("pages/q6.py", title="Q6", icon="📦")
+m8 = st.Page("pages/m8.py", title="Apple Stock Price Forecasting", icon="🤖")
 
 vis_agent = st.Page(
     "pages/vis_agent.py",
@@ -50,13 +59,11 @@ st.markdown(
         font-size: 0.95rem;
         text-decoration: none !important;
     }
-
     .floating-ai:hover {
         transform: translateY(-1px);
         box-shadow: 0 14px 32px rgba(0,0,0,0.34);
     }
     </style>
-
     <a class="floating-ai" href="/ai-agent" target="_self">
         🎯 Open Visual AI Agent
     </a>
@@ -68,6 +75,7 @@ pg = st.navigation(
     {
         "": [home],
         "Analysis Questions": [q1, q2, q3, q4, q5, q6],
+        "Deep Learning Inference": [m8],   # ← 추가
         "Hidden": [vis_agent],
     },
     position="top",
